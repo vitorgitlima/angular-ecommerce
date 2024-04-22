@@ -8,7 +8,7 @@ import { Product } from '../common/product';
 })
 export class CartService {
 
-  cartItems: CartItem[];
+  cartItems: CartItem[] = [];
  
   totalPrice: Subject<number> = new Subject<number>();
   totalQuantity: Subject<number> = new Subject<number>();
@@ -42,31 +42,33 @@ export class CartService {
   }
  
   computeCartTotals() {
+
     let totalPriceValue: number = 0;
     let totalQuantityValue: number = 0;
- 
+
     for (let currentCartItem of this.cartItems) {
-      totalPriceValue += (currentCartItem.quantity * currentCartItem.unitPrice);
+      totalPriceValue += currentCartItem.quantity * currentCartItem.unitPrice;
       totalQuantityValue += currentCartItem.quantity;
     }
- 
+
+    // publish the new values ... all subscribers will receive the new data
     this.totalPrice.next(totalPriceValue);
     this.totalQuantity.next(totalQuantityValue);
- 
+
+    // log cart data just for debugging purposes
     this.logCartData(totalPriceValue, totalQuantityValue);
-    this.persistCartItems();
- 
   }
 
   logCartData(totalPriceValue: number, totalQuantityValue: number) {
-    console.log(`Contents of the cart`);
+
+    console.log('Contents of the cart');
     for (let tempCartItem of this.cartItems) {
       const subTotalPrice = tempCartItem.quantity * tempCartItem.unitPrice;
       console.log(`name: ${tempCartItem.name}, quantity=${tempCartItem.quantity}, unitPrice=${tempCartItem.unitPrice}, subTotalPrice=${subTotalPrice}`);
     }
- 
-    console.log(`totalPrice: ${totalPriceValue.toFixed(2)}, totalQuantity: ${totalQuantityValue} `)
-    console.log(`-----`)
+
+    console.log(`totalPrice: ${totalPriceValue.toFixed(2)}, totalQuantity: ${totalQuantityValue}`);
+    console.log('----');
   }
 
   persistCartItems() {
