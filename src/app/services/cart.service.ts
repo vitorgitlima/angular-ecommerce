@@ -7,40 +7,40 @@ import { Product } from '../common/product';
   providedIn: 'root'
 })
 export class CartService {
- 
+
   cartItems: CartItem[] = [];
- 
+
   totalPrice: Subject<number> = new Subject<number>();
   totalQuantity: Subject<number> = new Subject<number>();
- 
+
   constructor() {
     this.cartItems = JSON.parse(sessionStorage.getItem('cartItems')) ? JSON.parse(sessionStorage.getItem('cartItems')) : [];
   }
- 
+
   addToCart(theCartItem: CartItem) {
- 
+
     // Check if item is in cart
     let alreadyExistsInCart: boolean = false;
     let existingCartItem: CartItem = undefined;
- 
+
     if (this.cartItems.length > 0) {
       // Find item in the cart based on item id
       existingCartItem = this.cartItems.find(tempCartItem => tempCartItem.id === theCartItem.id);
- 
+
       // Check if we found it
       alreadyExistsInCart = (existingCartItem != undefined);
     }
- 
+
     if (alreadyExistsInCart) {
       existingCartItem.quantity++
     } else {
       this.cartItems.push(theCartItem)
     }
- 
+
     this.computeCartTotals();
- 
+
   }
- 
+
   computeCartTotals() {
 
     let totalPriceValue: number = 0;
@@ -76,10 +76,10 @@ export class CartService {
   }
 
   decrementQuantity(theCartItem: CartItem) {
-    
+
     theCartItem.quantity--;
 
-    if(theCartItem.quantity === 0){
+    if (theCartItem.quantity === 0) {
 
       this.remove(theCartItem);
 
@@ -90,13 +90,13 @@ export class CartService {
 
   }
   remove(theCartItem: CartItem) {
-    
+
     // get index of item in the array
-    const itemIndex = this.cartItems.findIndex( tempCartItem => tempCartItem.id === theCartItem.id);
+    const itemIndex = this.cartItems.findIndex(tempCartItem => tempCartItem.id === theCartItem.id);
 
 
     // if found, remove the item from the array at the
-    if(itemIndex > -1){
+    if (itemIndex > -1) {
       this.cartItems.splice(itemIndex, 1);
       this.computeCartTotals();
     }
