@@ -19,7 +19,7 @@ export class Luv2ShopFormServiceService {
       data.push(theMonth);
     }
 
-    return of (data);
+    return of(data);
 
   }
 
@@ -27,14 +27,17 @@ export class Luv2ShopFormServiceService {
 
     let data: number[] = [];
 
-    // builder an array for "Year" dropdown List
+    // build an array for "Year" downlist list
     // - start at current year and loop for next 10 years
-
+    
     const startYear: number = new Date().getFullYear();
     const endYear: number = startYear + 10;
 
-    for (let theYear = startYear; theYear <= endYear; theYear++ ) {
+    for (let theYear = startYear; theYear <= endYear; theYear++) {
       data.push(theYear);
     }
+
+    return of(data);
+  }
 
 }
