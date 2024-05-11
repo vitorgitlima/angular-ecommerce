@@ -23,12 +23,12 @@ export class Luv2ShopFormServiceService {
   }
 
   getStates(theCountryCode: string): Observable<State[]> {
+
     // search url
-    const searchStatesUrl = '${this.statesUrl}/search/findByCountryCode?code=${theCountryCode}';
+    const searchStatesUrl = `${this.statesUrl}/search/findByCountryCode?code=${theCountryCode}`;
 
     return this.httpclient.get<GetResponseStates>(searchStatesUrl).pipe(
       map(response => response._embedded.states)
-
     );
   }
 
@@ -72,7 +72,7 @@ interface GetResponseCountries {
   }
 }
 
-interface GetResponseStates{
+interface GetResponseStates {
   _embedded: {
     states: State[];
   }
