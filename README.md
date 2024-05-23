@@ -11,27 +11,27 @@ Before you begin, ensure you have the following installed:
 - Angular CLI
 
 To install Angular CLI, run:
-\```sh
+```console
 npm install -g @angular/cli
-\```
+```
 
 ## Getting Started
 
 1. **Clone the repository:**
-   \```sh
+   ```console
    git clone <repository-url>
    cd <repository-directory>
-   \```
+   ```
 
 2. **Install dependencies:**
-   \```sh
+   ```console
    npm install
-   \```
+   ```
 
 3. **Start the development server:**
-   \```sh
+   ```console
    ng serve --open
-   \```
+   ```
 
    This will automatically open your default web browser and navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
    
