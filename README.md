@@ -34,5 +34,6 @@ npm install -g @angular/cli
    \```
 
    This will automatically open your default web browser and navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
+   
+4. **Start the Backend:**
    Ensure that you are running the backend on Spring with Docker or have started the application locally. You can find the backend repository [Spring Backend](https://github.com/vitorgitlima/ecommerce-spring)
